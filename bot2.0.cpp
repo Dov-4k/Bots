@@ -15,11 +15,11 @@ int main() {
         cout << endl;
         bot.printPerson();
         string answer;
-        cout << "Does the persons details look correct? (y/n)" << endl;
+        cout << "\nDoes the persons details look correct? (y/n)" << endl;
         cin >> answer;
 
         if(answer == "y") {
-            bot.writeToFile("personalDetails.txt");
+            bot.writeToFile(fileName);
             break;
         } else if(answer == "n") {
             bot.setPerson();

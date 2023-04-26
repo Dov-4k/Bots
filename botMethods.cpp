@@ -1,15 +1,16 @@
 #include "includes/botMethods.h"
 #include <iostream>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
 Bot::Bot() {
     cout << "Enter first name: ";
-    cin >> firstName;
+    getline(cin, firstName);
 
     cout << "Enter last name: ";
-    cin >> lastName;
+    getline(cin, lastName);
 
     cout << "Enter birth year: ";
     cin >> birthYear;
@@ -23,10 +24,10 @@ Bot::Bot() {
 
 void Bot::setPerson() {
     cout << "Enter first name: ";
-    cin >> firstName;
+    getline(cin, firstName);
 
     cout << "Enter last name: ";
-    cin >> lastName;
+    getline(cin, lastName);
 
     cout << "Enter birth year: ";
     cin >> birthYear;
@@ -92,20 +93,20 @@ void Bot::writeToFile(string fileName) {
         // Close file
         outFile.close();
         
-        cout << "Personal details saved to " << fileName << " file." << endl;
+        cout << "\nPersonal details saved to " << fileName << " file." << endl;
     }
 }
 
 void Bot::readFromFile(string fileName) {
     ifstream file(fileName);
 
-    file >> firstName;
-    file >> lastName;
+    getline(file, firstName);
+    getline(file, lastName);
     file >> birthMonth;
     file >> birthDay;
     file >> birthYear;
 
     file.close();
 
-    cout << "Personal details read from " << fileName << " file." << endl;
+    cout << "\nPersonal details read from " << fileName << " file." << endl;
 };
