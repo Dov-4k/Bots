@@ -9,7 +9,7 @@ int main() {
 
     string fileName;
     cout << "\nWhat is the desired file name with extenstion: ";
-    cin >> fileName;
+    getline(cin, fileName);
 
     while(true) {
         cout << endl;
