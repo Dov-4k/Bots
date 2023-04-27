@@ -8,14 +8,14 @@ int main() {
     Bot bot;
 
     string fileName;
-    cout << "\nWhat is the desired file name with extenstion: ";
-    getline(cin, fileName);
+    cout << "\nWhat is the desired file name with extenstion? (.txt, etc) ";
+    cin >> fileName;
 
     while(true) {
         cout << endl;
         bot.printPerson();
         string answer;
-        cout << "\nDoes the persons details look correct? (y/n)" << endl;
+        cout << "\nDoes the persons details look correct? (y/n) ";
         cin >> answer;
 
         if(answer == "y") {

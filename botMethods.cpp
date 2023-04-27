@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdio>
 
 using namespace std;
 
@@ -12,14 +13,14 @@ Bot::Bot() {
     cout << "Enter last name: ";
     getline(cin, lastName);
 
-    cout << "Enter birth year: ";
-    cin >> birthYear;
-
     cout << "Enter birth month: ";
     cin >> birthMonth;
 
     cout << "Enter birth day: ";
     cin >> birthDay;
+
+    cout << "Enter birth year: ";
+    cin >> birthYear;
 }
 
 void Bot::setPerson() {
@@ -29,14 +30,14 @@ void Bot::setPerson() {
     cout << "Enter last name: ";
     getline(cin, lastName);
 
-    cout << "Enter birth year: ";
-    cin >> birthYear;
-
     cout << "Enter birth month: ";
     cin >> birthMonth;
 
     cout << "Enter birth day: ";
     cin >> birthDay;
+
+    cout << "Enter birth year: ";
+    cin >> birthYear;
 }
 
 void Bot::printPerson() {
@@ -44,11 +45,11 @@ void Bot::printPerson() {
 
     cout << "Enter last name: " << lastName << endl;
 
-    cout << "Enter birth year: " << birthYear << endl;
-
     cout << "Enter birth month: " << birthMonth << endl;
 
     cout << "Enter birth day: " << birthDay << endl;
+
+    cout << "Enter birth year: " << birthYear << endl;
 }
 
 void Bot::writeToFile(string fileName) {
@@ -59,25 +60,41 @@ void Bot::writeToFile(string fileName) {
     bool fileExists = inFile.good();
     
     if (fileExists) {
-        // Read data from file
-        readFromFile(fileName);
+        string rewrite;
+        cout << "\nThe file you gave already exists, would you like to overwrite it? (y/n)" << endl;
+        cin >> rewrite;
 
-        printPerson();
-        
-        // Calculate age
-        time_t now = time(0);
-        tm* local_time = localtime(&now);
-        int currentYear = local_time->tm_year + 1900;
-        int age = currentYear - birthYear;
-        
-        // Check if it's the user's birthday
-        bool isBirthday = (local_time->tm_mon + 1 == birthMonth) && (local_time->tm_mday == birthDay);
-        
-        // Greet user
-        cout << "Welcome back, " << firstName << " " << lastName << "!" << endl;
-        cout << "You are " << age << " years old." << endl;
-        if (isBirthday) {
-            cout << "Happy birthday!" << endl;
+        if(rewrite == "y") {
+            ofstream overFile(fileName, ofstream::trunc);
+
+            overFile << firstName << endl;
+            overFile << lastName << endl;
+            overFile << birthMonth << endl;
+            overFile << birthDay << endl;
+            overFile << birthYear << "\n" << endl;
+
+            overFile.close();
+        } else {
+            // Read data from file
+            readFromFile(fileName);
+
+            printPerson();
+            
+            // Calculate age
+            time_t now = time(0);
+            tm* local_time = localtime(&now);
+            int currentYear = local_time->tm_year + 1900;
+            int age = currentYear - birthYear;
+            
+            // Check if it's the user's birthday
+            bool isBirthday = (local_time->tm_mon + 1 == birthMonth) && (local_time->tm_mday == birthDay);
+            
+            // Greet user
+            cout << "Welcome back, " << firstName << " " << lastName << "!" << endl;
+            cout << "You are " << age << " years old." << endl;
+            if (isBirthday) {
+                cout << "Happy birthday!" << endl;
+            }
         }
     } else {
         // Open file for writing
