@@ -1,0 +1,10 @@
+Hello|Hello
+Hi|Hello
+What are you doing|Just doing my job
+How are you|Im doing well, thank you
+Bye|Bye
+Hey|Hello
+What's up|Nothing much, doing good
+Whats up|Nothing much, doing good
+what time is it|Time to get a watch
+How are you doing|I am doing well
