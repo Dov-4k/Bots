@@ -11,7 +11,7 @@
 
 struct learning {
     public:
-        void learner(std::string userInput);
+        void learn(std::string userInput);
         int getResponse(std::string userInput);
         void showMessage();
 };

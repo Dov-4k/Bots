@@ -2,10 +2,11 @@
 
 using namespace std;
 
-void learning::learner(string userInput) {
+void learning::learn(string userInput) {
     string storePhrase = userInput;
     string learningResponse;
 
+    //the phrase was not found in the brain and the proper response will be saved
     cout << "Not found! Tell me what to enter for \"" << storePhrase << "\": ";
     getline(cin, learningResponse);
 
@@ -37,23 +38,28 @@ int learning::getResponse(string userInput) {
     string phrase;
     string response;
 
-    while(getline(brain, phrase, '|')) {
-        getline(brain, response);
-
-        if(userInput == phrase) {
-            cout << "[Bot]: " << response << endl;
-            brain.close();
-            return 1;
-        }
-    }
-
     //quit if the user types Quit
     if(userInput == "Quit") {
         exit(0);
+    } else if (userInput == "bye" || userInput == "Bye") {
+        cout << "[Bot]: Bye" << endl;
+        exit(0);
+    } else if(userInput == "") {
+
+    } else {
+        while(getline(brain, phrase, '|')) {
+            getline(brain, response);
+            
+            //bot response if existing phrase
+            if(userInput == phrase) {
+                cout << "[Bot]: " << response << endl;
+                brain.close();
+                return 1;
+            }
+        }
     }
 
     //we couldn't find the phrase, so we'll need to go to the other function
-    //after you are done with the file always close it.
     brain.close();
     return 0;
 }
